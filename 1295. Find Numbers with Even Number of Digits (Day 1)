@@ -1,17 +1,42 @@
 class Solution {
     public int findNumbers(int[] nums) {
+
+//1.count no of digit
         int counts=0;
         for(int i=0;i<nums.length;i++){
             int value=nums[i];
             int count=0;
+   //1 method to count the integer is run while
             while(value!=0){
                 value/=10;
                 count++;
             }
+   //2 method to use log
             if(count%2==0){
                 counts+=1;
             }
         }
         return counts;
+   
+
+//2.convert into string
+ int count=0;
+    for(int value : nums){
+        
+        String element=""+value;
+        if(element.length()%2==0){
+            count++;
+        }
     }
+    return count;
+//3. Math.log10+1 to find length
+ int count=0;
+    for(int value:nums){
+       int elements=(int)(Math.log10(value)+1);
+        if(elements%2==0){
+            count++;
+        }
+    }
+    return count;
+}
 }
