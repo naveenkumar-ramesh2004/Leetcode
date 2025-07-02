@@ -1,0 +1,15 @@
+class Solution {
+    public int maximumWealth(int[][] accounts) {
+        int maxwealth=0;
+        for(int[] arr:accounts){
+            int wealth=0;
+            for(int money:arr){
+                wealth+=money;
+            }
+            if(wealth>maxwealth){
+                maxwealth=wealth;
+            }
+        }
+        return maxwealth;
+    }
+}
