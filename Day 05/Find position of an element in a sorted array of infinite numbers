@@ -1,0 +1,40 @@
+//Find position of an element in a sorted array of infinite numbers(geeksforgeeks)
+//Link:https://www.geeksforgeeks.org/dsa/find-position-element-sorted-array-infinite-numbers/
+
+import java.util.*;
+
+class GfG {
+
+    public static void main(String[] args) {
+
+        int[] arr = {3, 5, 7, 9, 10, 90, 100, 130, 140, 160, 170};
+        int k = 100;
+        int ans = answer(arr, k);
+        System.out.println(ans);
+    }
+      static int answer(int[] arr,int target){
+      	int start=0;
+        int end=1;
+        while(arr[end]<target){
+          start=end+1;
+          end=(2*end)+3;
+      }
+        return binarysearch(arr,target,start,end);
+      }
+      static int binarysearch(int arr[],int target,int start,int end){
+      	   while (start <= end) {
+            int mid = (start + end) / 2;
+
+            if (arr[mid] == target) {
+               return mid;
+            } else if (arr[mid] < target) {
+                start = mid + 1; 
+            } else {
+              
+                end = mid - 1;
+            }
+        }
+
+        return -1;
+       }
+}
