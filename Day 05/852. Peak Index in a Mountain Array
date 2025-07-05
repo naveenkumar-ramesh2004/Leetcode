@@ -1,0 +1,42 @@
+//852. Peak Index in a Mountain Array
+//link: https://leetcode.com/problems/peak-index-in-a-mountain-array/description/
+
+class Solution {
+    public int peakIndexInMountainArray(int[] arr) {
+        // ---- liner search o(n)------------
+        // int pos=0;
+        // for(int i=0;i<arr.length-1;i++){
+        //         if(arr[i]>arr[i+1]&& i<=arr.length){
+        //             pos =i;
+        //             break;
+        //         }
+        // }
+        // return pos;
+
+
+        //---------Binary search log(n)-------------------
+        int ans=findpeakpos(arr);
+        return ans;
+    }
+    int findpeakpos(int[] arr){
+        int start=0;
+        int end=arr.length-1;
+        int pos=0;
+        while(start<=end){
+            int mid=(start+end)/2;
+            if(arr[mid]<arr[mid+1]){
+                start=mid+1;
+
+            }
+            else if(arr[mid]<arr[mid-1]){
+                end=mid-1;
+            }
+            else{
+                pos= mid;
+                return pos;
+            }
+
+        }
+        return pos;
+    }
+}
