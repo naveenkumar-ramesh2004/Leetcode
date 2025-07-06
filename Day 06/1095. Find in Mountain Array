@@ -1,0 +1,116 @@
+//1095. Find in Mountain Array
+//Link: https://leetcode.com/problems/find-in-mountain-array/description/
+
+/**
+ * // This is MountainArray's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface MountainArray {
+ *     public int get(int index) {}
+ *     public int length() {}
+ * }
+ */
+ 
+/*class Solution {
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        this.mountainArray = mountainArr;
+        this.targetValue = target;
+        int n = mountainArray.length();
+        int peakposition=findpeakpos(mountainArr);
+        return minindex(peakposition,mountainArr,target);
+    }
+    public int findpeakpos(MountainArray mountainArr){
+        int start=0;
+        int end=MountainArray.length()-1;
+        int pos=0;
+        while(start<=end){
+            int mid=(start+end)/2;
+            if(MountainArray.get(mid)<MountainArray.get(mid+1)){
+                start=mid+1;
+
+            }
+            else if(MountainArray.get(mid)<MountainArray.get(mid-1)){
+                end=mid-1;
+            }
+            else{
+                pos= mid;
+                return pos;
+            }
+
+        }
+        return pos;
+    }
+    public int minindex(int end, MountainArray mountainArr,int target){
+        int start=0;
+        while(start<=end){
+            int mid=start+(end-start)/2;
+            if(MountainArray.get(mid)==target){
+                return mid;
+            }
+            else if(MountainArray.get(mid)<target){
+                start=mid+1;
+            }
+            else{
+                end=mid-1;
+            }
+        }
+        return -1;
+    }
+    }*/
+
+///2 approch.
+    class Solution {
+    public int findInMountainArray(int target, MountainArray mountainArr) {
+        int peak = findPeakIndex(mountainArr);
+
+        // Search in the ascending part
+        int index = binarySearch(mountainArr, target, 0, peak, true);
+        if (index != -1) return index;
+
+        // Search in the descending part
+        return binarySearch(mountainArr, target, peak + 1, mountainArr.length() - 1, false);
+    }
+
+    // Peak finding using binary search
+    private int findPeakIndex(MountainArray arr) {
+        int start = 0;
+        int end = arr.length() - 1;
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+
+            if (arr.get(mid) < arr.get(mid + 1)) {
+                start = mid + 1;
+            } else{
+                end = mid;
+            }
+        }
+        return start; // or end (both same here)
+    }
+
+    // Binary search (can handle both ascending and descending)
+    private int binarySearch(MountainArray arr, int target, int start, int end, boolean ascending) {
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            int value = arr.get(mid);
+
+            if (value == target) {
+                return mid;
+            }
+
+            if (ascending) {
+                if (value < target) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            } else {
+                if (value > target) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
