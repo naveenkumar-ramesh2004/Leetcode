@@ -1,6 +1,70 @@
 //33. Search in Rotated Sorted Array
 //Link: https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 
+
+//My version
+class Solution {
+    public int search(int[] nums, int target) {
+        int peak=findpeakpos(nums);
+        int ans=binarySearch(nums,0,peak,target);
+        if(ans==-1){
+            ans=binarySearch(nums,peak+1,nums.length-1,target);
+        }
+        return ans;
+    }
+        int findpeakpos(int[] arr){
+            int pos=0;
+        if(arr.length-1!=0){
+        int start=0;
+        int end=arr.length-1;
+        
+        while(start<=end){
+            int mid=(start+end)/2;
+        if(end>mid && arr[mid]>arr[mid+1]){
+            pos =mid;
+        }
+        if(start<mid && arr[mid]<arr[mid-1]){
+           pos= mid-1;
+        }
+        if(arr[mid]>arr[start]){
+            start=mid+1;
+        }
+        else{
+            end=mid-1;
+        }
+    }
+        }
+    else{
+        return 0;
+    }
+    return pos;
+        }
+    int binarySearch(int arr[],int start,int end,int target){
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            int value = arr[mid];
+
+            if (value == target) {
+                return mid;
+            }
+            else if (value < target) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+          
+        }
+        return -1;
+    }
+    }
+
+
+
+
+
+
+//Method two
+
 class Solution {
     public int search(int[] nums, int target) {
         int low = 0, high = nums.length - 1;
