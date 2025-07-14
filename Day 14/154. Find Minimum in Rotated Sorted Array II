@@ -1,0 +1,31 @@
+//154. Find Minimum in Rotated Sorted Array II
+//Link:https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/description/
+
+class Solution {
+    public int findMin(int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            
+            // Case 1: If elements at start, mid, and end are equal,
+            // we can't determine the sorted half, so shrink the window
+            if(nums[start] == nums[mid] && nums[mid]== nums[end]){
+                start++ ;
+                end-- ;
+                continue ;
+            }
+
+            // Case 2: Right half is unsorted, so min must be in right half
+            if (nums[mid] > nums[end]) {
+                start = mid + 1;
+            // Case 3;  Else, the min is at mid or in the left half
+            } else {
+                end = mid; // example - [3,1,2]
+            }
+        }
+
+        return nums[start]; // At this point, start == end == index of the smallest value
+    }
+}
