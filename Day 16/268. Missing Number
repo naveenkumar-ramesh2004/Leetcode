@@ -1,0 +1,24 @@
+//268. Missing Number
+//https://leetcode.com/problems/missing-number/description/
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int missingvalue=Findmissingvalue(nums);
+        return missingvalue;
+        
+    }
+    int Findmissingvalue(int[] nums){
+        int[] dublicate=new int[nums.length+1];
+        for(int i=0;i<nums.length;i++){
+            int index=nums[i];
+            dublicate[index]=-1;
+        }
+        for(int i=0;i<dublicate.length;i++){
+            if(dublicate[i]==0){
+                return i;
+            }
+            
+        }
+        return 0;
+    }
+}
