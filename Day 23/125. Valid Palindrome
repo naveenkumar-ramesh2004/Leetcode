@@ -1,0 +1,25 @@
+// 125. Valid Palindrome
+// https://leetcode.com/problems/valid-palindrome/description/
+
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        return findPalindrome(s.toLowerCase(),0,s.length()-1);
+    }
+    boolean findPalindrome(String s,int start,int end){
+        if(start<end){
+            if(!Character.isLetterOrDigit(s.charAt(start))){
+                return findPalindrome(s,start+1,end);
+            }
+            if(!Character.isLetterOrDigit(s.charAt(end))){
+                return findPalindrome(s,start,end-1);
+            }
+            if(s.charAt(start)!=s.charAt(end)){
+                return false;
+            }
+            return findPalindrome(s,start+1,end-1);
+            
+        }
+        return true;
+    }
+}
