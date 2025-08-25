@@ -1,0 +1,24 @@
+// 1137. N-th Tribonacci Number
+// https://leetcode.com/problems/n-th-tribonacci-number/description/
+
+
+class Solution {
+    public int tribonacci(int n) {
+        int x=0;
+        int y=1;
+        int z=1;
+        
+        
+        if(n<2){
+            return n;
+        }
+        
+        for(int i=3;i<=n;i++){
+            int sum=x+y+z;
+            x=y;
+            y=z;
+            z=sum;
+        }
+        return z;
+    }
+}
