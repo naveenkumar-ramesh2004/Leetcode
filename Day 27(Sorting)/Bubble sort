@@ -21,7 +21,7 @@ public class bubble {
 
 
 // Metod 2 Insted of this you can use ---- It is best Practice --------
-// for(int i=arr.length-1;i>0;i++){
+// for(int i=arr.length-1;i>0;i--){
 //             for(int j=0;j<i;j++){
 
 
@@ -36,9 +36,9 @@ import java.util.Arrays;
 public class bubble {
     public static void main(String[] args) {
         int arr[]={12,23,43,2,4,42,1,7};
-        for(int i=0;i<arr.length-1;i++){
+        for(int i=arr.length-1;i>0;i--){
             int didswap=0; // the check initiation
-            for(int j=0;j<arr.length-i-1;j++){
+            for(int j=0;j<i;j++){
 
                 if(arr[j]>arr[j+1]){
                     int temp=arr[j];
@@ -47,7 +47,7 @@ public class bubble {
                     didswap=1; // swap happpen
                 }
             }
-            if(!didswap){ //check swap heppend or not if not break the loop
+            if(didswap==0){ //check swap heppend or not if not break the loop
                 break;
 
         }
@@ -57,3 +57,6 @@ public class bubble {
 }
 
 /// time Complexity of this is O(n) best  ,Worst and avg is o(n^2);
+// Example of best Case if the arr is allready sorted the it take only n;
+// arr[]={1,2,3,4,5} there is no swap happen then the loop terminated. Here the time complexity is 1St loop run 1 and 2nd loop run n-1 so, it becom 1+n-1 is n 
+//so,answer is o(n);
