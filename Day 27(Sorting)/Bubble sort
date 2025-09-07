@@ -1,0 +1,25 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class bubble {
+    public static void main(String[] args) {
+        int arr[]={12,23,43,2,4,42,1,7};
+        for(int i=0;i<arr.length-1;i++){
+            for(int j=0;j<arr.length-i-1;j++){
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+                    System.out.println(Arrays.toString(arr));
+
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+
+// Metod 2 Insted of this you can use ---- It is best Practice --------
+// for(int i=arr.length-1;i>0;i++){
+//             for(int j=0;j<=i;j++){
