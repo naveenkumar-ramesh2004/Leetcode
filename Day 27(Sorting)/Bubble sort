@@ -23,3 +23,37 @@ public class bubble {
 // Metod 2 Insted of this you can use ---- It is best Practice --------
 // for(int i=arr.length-1;i>0;i++){
 //             for(int j=0;j<i;j++){
+
+
+//--------Time complexity of above is o(n^2) because same as selection sort two for loop run one n (first for loop) + n-1 + n-2 + .... + 1; so, o(n^2);
+// the Best,Worst,avg is O(n^2);
+
+// ----------We can optizime it useing check is doesn't swap break loop----------
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class bubble {
+    public static void main(String[] args) {
+        int arr[]={12,23,43,2,4,42,1,7};
+        for(int i=0;i<arr.length-1;i++){
+            int didswap=0; // the check initiation
+            for(int j=0;j<arr.length-i-1;j++){
+
+                if(arr[j]>arr[j+1]){
+                    int temp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                    didswap=1; // swap happpen
+                }
+            }
+            if(!didswap){ //check swap heppend or not if not break the loop
+                break;
+
+        }
+}
+        System.out.println(Arrays.toString(arr));
+    }
+}
+
+/// time Complexity of this is O(n) best  ,Worst and avg is o(n^2);
