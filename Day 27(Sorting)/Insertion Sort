@@ -1,0 +1,62 @@
+/*import java.util.Arrays;
+
+public class insertion {
+    public static void main(String[] args) {
+    int arr[]={12,23,43,2,4,42,1,7,3};
+    for(int i=0;i<arr.length-1;i++){
+        for(int j=i+1;j>0;j--){
+            if(arr[j-1]>arr[j]){
+                int temp=arr[j-1];
+                arr[j-1]=arr[j];
+                arr[j]=temp;
+            }
+        }
+    }
+    System.out.print(Arrays.toString(arr));
+    }
+}
+*/
+
+
+//Method 2 use While 
+
+// import java.util.Arrays;
+
+// public class insertion {
+//     public static void main(String[] args) {
+//     int arr[]={12,23,43,2,4,42,1,7,3};
+//     for(int i=0;i<arr.length-1;i++){
+//         int j=i+1;
+//         while(j>0){ // here we can put the if also inside the while while(j>0 && arr[j-1]>arr[j])
+//             if(arr[j-1]>arr[j]){
+//                 int temp=arr[j-1];
+//                 arr[j-1]=arr[j];
+//                 arr[j]=temp;
+//             }
+//         }
+//     }
+//     System.out.print(Arrays.toString(arr));
+//     }
+// }
+
+// optimize method 2
+import java.util.Arrays;
+
+public class insertion {
+    public static void main(String[] args) {
+    int arr[]={12,23,43,2,4,42,1,7,3};
+    for(int i=0;i<arr.length-1;i++){
+        int j=i+1;
+        while(j>0 && arr[j-1]>arr[j]){
+                int temp=arr[j-1];
+                arr[j-1]=arr[j];
+                arr[j]=temp;
+                j--;
+        }
+    }
+    System.out.print(Arrays.toString(arr));
+    }
+}
+
+// Time complexity O(n^2) the worst and avg case because the 1st loop run n time and the 2nd loop run 0 + 1 + 2 + 3 + 4 + ... + n so, it n*(n+1)/2 = O(n^2)
+//---The "best case" is -----O(n) ----if the arr sorted like [1,2,3,4] the 1st loop run -n times- but 2nd of while loop doesn't run because the condition not satified While (j>0 && "arr[j-1]>arr[j]")
