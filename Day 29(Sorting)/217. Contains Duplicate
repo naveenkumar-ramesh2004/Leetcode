@@ -1,0 +1,77 @@
+// 217. Contains Duplicate
+//https://leetcode.com/problems/contains-duplicate/description/?envType=problem-list-v2&envId=sorting
+
+//Method 1(Bubble sort)
+// class Solution{
+//      public boolean containsDuplicate(int[] nums) {
+//         for(int i=0;i<nums.length;i++){
+//             for(int j=0;j<nums.length-i-1;j++){
+//                 if(nums[j]>nums[j+1]){
+//                     int temp=nums[j];
+//                     nums[j]=nums[j+1];
+//                     nums[j+1]=temp;
+//                 }
+//             }
+//         }
+//         for(int i=0;i<nums.length-1;i++){
+//             if(nums[i]==nums[i+1]){
+//                 return true;
+//             }
+//         }
+//         return false;
+//      }
+// }
+
+
+
+//Merge Sort
+/* class Solution{
+     public boolean containsDuplicate(int[] nums) {
+      divide(nums,0,nums.length-1);
+      for(int i=0;i<nums.length-1;i++){
+            if(nums[i]==nums[i+1]){
+                return true;
+            }
+        }
+        return false;
+      
+    }
+
+    static void  divide(int[] arr,int low,int high){
+        if(low>=high){
+            return;
+        }
+        int mid=(low+high)/2;
+        divide(arr,low,mid);
+        divide(arr,mid+1,high);
+        merge(arr,low,mid,high);
+    }
+    static void merge(int arr[],int low,int mid,int high){
+        ArrayList<Integer> temp =new ArrayList<>();
+        int left=low;
+        int right=mid+1;
+        while(left<=mid && right<=high){
+            if(arr[left]<arr[right]){
+                temp.add(arr[left++]);
+            }
+            else{
+                temp.add(arr[right++]);
+            }
+        }
+        while(left<=mid){
+            temp.add(arr[left++]);
+        }
+        while(right<=high){
+            temp.add(arr[right++]);
+        }
+        for(int i=low;i<=high;i++){
+            arr[i]=temp.get(i-low);
+        }
+        
+
+    }
+ }
+*/
+
+//Hashset
+
