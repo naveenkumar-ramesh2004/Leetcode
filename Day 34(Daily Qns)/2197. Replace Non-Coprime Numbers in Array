@@ -1,0 +1,104 @@
+//2197. Replace Non-Coprime Numbers in Array
+//https://leetcode.com/problems/replace-non-coprime-numbers-in-array/?envType=daily-question&envId=2025-09-16
+
+//It work but not in all test case if Final ans=  [7,2,24,9] their 2 and 24 are non coprime number but it not consider that.
+
+
+//  class Solution {
+//     public List<Integer> replaceNonCoprimes(int[] nums) {
+//     //  int arr[]={6,4,3,2,7,6,2};
+//         return coprime(nums);
+//         // System.out.print(nums);
+//     }
+//      ArrayList<Integer> coprime(int[] arr){
+//         Stack<Integer> stack = new Stack<>();
+//         ArrayList<Integer> nums = new ArrayList<>();
+//          for(int i=arr.length-1;i>=0;i--){
+//             stack.push(arr[i]);
+//          }
+//         //  System.out.println(stack);
+         
+//          while(stack.size()>1){
+//             int val1=stack.pop();
+//             int val2=stack.pop();
+            
+//             // System.out.println(val1+" "+val2);
+//             int gcd=Gcd(val1,val2);
+//             // System.out.println(gcd);
+//             if(gcd>1){
+//                 // int lcm=(int)((long)(val1*val2)/gcd);
+//                 long lcm = val1 / gcd * val2;
+//                 stack.push((int)lcm);
+//                 // System.out.println(lcm);
+//             }
+//             else{
+//                 nums.add(val1);
+//                 stack.push(val2);
+//             }
+//             // System.out.println(stack);
+//          }
+//          if (!stack.isEmpty()) {
+//             nums.add(stack.pop());
+//             }
+//          return nums;
+//     }
+//      int Gcd(int a,int b){
+//         while(a>0 && b>0){
+//             if(a>b){
+//                 a=a%b;
+//             }
+//              else{
+//                 b=b%a;
+//             }
+            
+//         }
+//             if(a==0){
+//                 return b;
+//             }
+//             return a;
+//     }
+// }
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+class Solution{
+     public List<Integer> replaceNonCoprimes(int[] nums) {
+        return FindreplaceNonCoprimes(nums);
+     }
+List<Integer> FindreplaceNonCoprimes(int[] nums){
+    Stack<Integer> stack = new Stack<>();
+    for (int num : nums) {
+        stack.push(num);
+        while (stack.size() > 1) {
+            int a = stack.pop();
+            int b = stack.pop();
+            // System.err.println(a+"=a b="+b);
+            int g = gcd(a, b);
+            // System.out.println("gcd="+g);
+            if (g > 1) {
+                long lcm = (long)a / g * b; // avoid overflow
+                stack.push((int)lcm);
+                // System.out.println("lcm="+lcm);
+            } else {
+                stack.push(b);
+                stack.push(a);
+                // System.out.println(stack);
+                break;
+            }
+            // System.out.println(stack);
+        }
+    }
+    return new ArrayList<>(stack);
+}
+
+ int gcd(int a, int b) {
+    while (b != 0) {
+        int t = a % b;
+        a = b;
+        b = t;
+    }
+    return a;
+}
+
+}
