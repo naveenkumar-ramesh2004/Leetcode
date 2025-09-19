@@ -1,0 +1,38 @@
+//350. Intersection of Two Arrays II
+//https://leetcode.com/problems/intersection-of-two-arrays-ii/description/
+
+
+// class Solution {
+//     public int[] intersect(int[] nums1, int[] nums2) {
+//         boolean[] temp = new boolean[1001];
+//         for(int num:nums2){
+//             temp[num]=true;
+//         }
+//         int[] ans= new int[nums1.length];
+//         int i=0;
+//         for(int num:nums1){
+//             if(temp[num]==true){
+//                 ans[i++]=num;
+//                 // temp[num]=false;
+//             }
+//         }
+//         return Arrays.copyOfRange(ans,0,i);
+//     }
+// }
+public class Solution{
+    public int[] intersect(int[] nums1, int[] nums2) {
+        int[] temp = new int[1001];
+        for(int num:nums1){
+            temp[num]++;
+        }
+        int[] ans= new int[nums1.length];
+        int i=0;
+        for(int num:nums2){
+            if(temp[num]>0){
+                ans[i++]=num;
+                temp[num]--;
+            }
+        }
+        return Arrays.copyOfRange(ans,0,i);
+    }
+}
