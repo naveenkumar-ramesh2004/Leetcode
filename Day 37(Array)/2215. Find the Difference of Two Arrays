@@ -1,5 +1,7 @@
-//2215. Find the Difference of Two Arrays
+//2215. Find the Difference of Two Array
 //https://leetcode.com/problems/find-the-difference-of-two-arrays/description/
+
+//Brute Force
 
 class Solution {
     public List<List<Integer>> findDifference(int[] nums1, int[] nums2) {
