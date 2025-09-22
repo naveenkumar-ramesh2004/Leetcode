@@ -1,6 +1,8 @@
 // 125. Valid Palindrome
 // https://leetcode.com/problems/valid-palindrome/description/
 
+// Method 1
+
 
 class Solution {
     public boolean isPalindrome(String s) {
