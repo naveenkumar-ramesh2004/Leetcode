@@ -1,0 +1,40 @@
+//166. Fraction to Recurring Decimal
+//https://leetcode.com/problems/fraction-to-recurring-decimal/description/?envType=daily-question&envId=2025-09-23
+
+class Solution {
+    public String fractionToDecimal(int numerator, int denominator) {
+        if(numerator==0) return "0";
+        long n=(long)numerator;
+        long d=(long)denominator;
+        if(n%d==0){
+            return Long.toString(n/d);
+        }
+        StringBuilder f = new StringBuilder();
+
+        if(n>0 ^ d>0){
+            f.append("-");
+        }
+        n=Math.abs(n);
+        d=Math.abs(d);
+        long q=n/d;
+        f.append(q);
+        long r= n%d;
+        f.append(".");
+        Map<Long,Integer> seen = new HashMap<>();
+        while(r!=0){
+            if(seen.containsKey(r)){
+                // f=f.substring(0,idx)+"("+f.substring(idx)+")";
+                f.insert(seen.get(r),"(");
+                f.append(")");
+                break;
+            }
+            else{
+                seen.put(r,f.length());
+            }
+            r*=10;
+            f.append(r/d);
+            r=r%d;
+        }
+        return f.toString();
+    }
+}
