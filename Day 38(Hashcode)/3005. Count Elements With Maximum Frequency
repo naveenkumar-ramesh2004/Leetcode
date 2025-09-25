@@ -1,0 +1,62 @@
+//3005. Count Elements With Maximum Frequency
+//https://leetcode.com/problems/count-elements-with-maximum-frequency/description/?envType=daily-question&envId=2025-09-22&__cf_chl_tk=ePxtuAQQ3vRROeeg3xzM5TanSoVS5xDtsONBEK4blZM-1758794819-1.0.1.1-2GIZY5KKn80XpUXNKnrpOGw8WIQ3TTE7.lFRain1uNI
+
+
+// Method 1 use array[101]
+
+class Solution {
+    public int maxFrequencyElements(int[] nums) {
+        byte[] freq= new byte[101];
+        int ans=0,max=0;
+        for(int num:nums){
+            byte val=++freq[num];
+            if(val>max){
+                max=val;
+                ans=max;
+            }
+            else if(val==max){
+                ans+=max;
+            }
+        }
+        return ans;
+        // int max=0;
+        // for(int val:freq){
+        //     if(val>max){
+        //         max=val;
+        //     }
+        // }
+        // // System.out.print(max);
+        // int count=0;
+        // for(int val:freq){
+        //     if(val==max){
+        //         count++;
+        //     }
+        // }
+        // return count*max;
+        
+    }
+}
+
+// public class Solution{
+//     public int maxFrequencyElements(int[] nums) {
+//         Map<Integer,Integer> freq = new HashMap<>();
+//         int max=0;
+//         for(int i=0;i<nums.length;i++){
+//             freq.put(nums[i],freq.getOrDefault(nums[i],0)+1);
+//             if(max<freq.get(nums[i])){max=freq.get(nums[i]);}
+//         }
+//         int ans=0;
+//         // System.out.print(freq);
+//             for(Integer val:freq.values()){
+//                 if(val==max){
+//                 ans+=max;}
+//                 // else if(val>max){
+//                 //     max=val;
+//                 //     ans=max;
+//                 // }
+//             }
+//             return ans;
+//         }
+        
+
+//     }
