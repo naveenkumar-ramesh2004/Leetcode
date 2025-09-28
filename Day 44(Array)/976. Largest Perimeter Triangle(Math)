@@ -1,0 +1,59 @@
+//976. Largest Perimeter Triangle
+//https://leetcode.com/problems/largest-perimeter-triangle/description/?envType=daily-question&envId=2025-09-26
+
+/*
+If you sort the array in descending order, then for any three consecutive elements 
+a≥b≥c, you only need to check b+c>a to see if they form a valid triangle. You don’t need the other two checks
+
+Hint 2 (Greedy):
+After sorting, start from the largest elements and check consecutive triplets. The first valid triplet you find will have the largest perimeter. No need to check all triplets.
+*/
+
+// class Solution {
+//     public int largestPerimeter(int[] nums) {
+//         Arrays.sort(nums);
+//         int max=0;
+//         for(int i=nums.length-1;i>=0;i--){
+//             for(int j=i-1;j>=0;j--){
+//                 for(int k=j-1;k>=0;k--){
+//                     int a=nums[i],
+//                      b=nums[j],
+//                      c=nums[k];
+//                      if(a+b>c && a+c>b && b+c>a){
+//                         return a+b+c;
+//                      }
+                     
+//                 }
+//             }
+//         }
+//         return max;
+//     }
+// }
+
+
+class Solution {
+    public int largestPerimeter(int[] nums) {
+        Arrays.sort(nums);
+        for(int i=nums.length-1;i>=2;i--){
+            if(nums[i-2]+nums[i-1]>nums[i]){
+                return nums[i]+nums[i-1]+nums[i-2];
+            }
+        }
+        return 0;
+    }
+}
+
+/*
+For sides a, b, c:
+
+a + b > c
+a + c > b
+b + c > a
+
+
+If you have all positive numbers, the largest side is the most restrictive: a + b > c where c is largest.
+
+That’s the key insight: only the two smaller sides need to sum larger than the largest side.
+
+*/
+
