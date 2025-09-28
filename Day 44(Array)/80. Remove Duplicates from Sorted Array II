@@ -1,0 +1,57 @@
+//80. Remove Duplicates from Sorted Array II
+//https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+
+
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        if(nums.length<=2)
+        return nums.length;
+        int k=2;
+        for(int i=2;i<nums.length;i++){
+            if(nums[k-2]!=nums[i]){
+                nums[k++]=nums[i];
+            }
+        }
+        return k;
+    }
+}
+
+
+/*
+nums = [1,1,1,2,2,3]
+Step by step:
+
+Start with k = 0.
+
+First two numbers → always keep.
+→ [1, 1] ✅
+
+Now check the next 1:
+Compare with nums[k-2].
+
+nums[k-2] = 1 and current = 1 → same! ❌ skip it.
+
+Next number 2:
+Compare with nums[k-2] = 1.
+
+Different → keep it → [1, 1, 2].
+
+Next 2:
+Compare with nums[k-2] = 1.
+
+Different → keep it → [1, 1, 2, 2].
+
+Next 3:
+Compare with nums[k-2] = 2.
+
+Different → keep it → [1, 1, 2, 2, 3].
+
+✅ Done → new length = 5, array = [1,1,2,2,3].
+
+💡 Hint rule:
+👉 Always keep the first 2 elements.
+👉 For later elements, only keep if it’s not equal to nums[k-2].
+
+Do you want me to give you a formula-like rule you can directly apply in your loop?
+*/
