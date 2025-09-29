@@ -1,0 +1,38 @@
+//283. Move Zeroes
+//https://leetcode.com/problems/move-zeroes/
+
+//Brute Force 
+//  -Use temp array to sotre non zero number use k
+
+// class Solution {
+//     public void moveZeroes(int[] nums) {
+//         int[] temp = new int[nums.length];
+//         int k=0;
+//         for(int i=0;i<nums.length;i++){
+//             if(nums[i]!=0){
+//                 temp[k++]=nums[i];
+//             }
+//         }
+//         k=0;
+//         for(int val:temp){
+//             nums[k++]=val;
+//         }
+        
+//     }
+// }
+
+
+//Optimize 
+//  --without use another another array use k to put first non zero element and fill remaing elemnt zero
+ 
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int k=0;
+        for(int i=0;i<nums.length;i++){
+           if(nums[i]!=0){ nums[k++]=nums[i];}
+        }
+        while(k<nums.length){
+            nums[k++]=0;
+        }
+    }
+}
