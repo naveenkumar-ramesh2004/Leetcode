@@ -1,0 +1,128 @@
+//Quick sort
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+class Quicksort{
+    public static void main(String[] args) {
+        // int arr[]={3,1,2,4,1,5,6,2,4};
+        int arr[]={5,6,7,2,1,3};
+        quicksort(arr,0,arr.length-1);
+        System.out.println(Arrays.toString(arr));
+    }
+    static void quicksort(int[] arr,int low,int high){
+        if(low<high){
+           int pivotidx=sort(arr,low,high);
+           quicksort(arr,low,pivotidx-1);
+           quicksort(arr,pivotidx+1,arr.length-1);
+        }
+    }
+    static int sort(int arr[],int low, int high){
+        int pivot=arr[low];
+        int i=low,j=high;
+        while(i<j){
+            while(arr[i]<=pivot && i<high){
+                i++;
+            }
+            while(arr[j]>pivot && j>low){
+                j--;
+            }
+            if(i<j){
+            int temp=arr[i];
+            arr[i]=arr[j];
+            arr[j]=temp;
+            }
+        }
+        arr[low]=arr[j];
+        arr[j]=pivot;
+
+        return j;
+    }
+}
+
+/*
+ while (arr[i] <= pivot && i < high) {
+    i++;
+}
+Why <= instead of <?
+Pivot definition
+We choose the pivot as arr[low].
+Now we want to move i forward until we find an element greater than the pivot (because it belongs on the right side).
+
+If we only used < pivot, then elements equal to pivot would be considered "greater" and swapped unnecessarily.
+
+By using <=, equal elements stay grouped with the pivot on the left side → this avoids extra swaps and keeps duplicates handled correctly.
+
+Example
+Say pivot = 5, array = [5, 6, 3, 5]
+
+Start: i = low = 0
+
+arr[i] = 5 → 5 <= 5, so i++
+
+Next, arr[i] = 6 → 6 <= 5 ❌ stop here.
+
+Now i points at the first number bigger than the pivot.
+
+If we used < pivot instead, the loop would stop at arr[i] = 5 (the duplicate pivot), and we’d try swapping it unnecessarily.
+
+The j side
+Notice the symmetry:
+
+java
+Copy code
+while (arr[j] > pivot && j > low) {
+    j--;
+}
+Here we move j left until we find something ≤ pivot (belongs on left side).
+
+So in short:
+<= on the left side means: "skip over all elements that are fine staying with the pivot (smaller or equal)."
+
+This ensures duplicates don’t get moved to the wrong partition.
+ */
+
+
+/*
+-----------------------------------------⏱ Time Complexity of Quicksort----------------------------------------------------
+
+Best case (balanced partitioning):
+Every pivot splits the array into two nearly equal halves.
+Recurrence:
+
+T(n)=2T(2n)+O(n)
+
+→ Solves to O(n log n).
+
+Average case (random data):
+On average, pivot roughly splits the array into two parts (not perfect but not worst).
+→ O(n log n) expected.
+
+Worst case (unbalanced partitioning):
+If the pivot is always the smallest or largest element (like already sorted array, if we always pick arr[low] as pivot).
+Recurrence:
+
+T(n)=T(n−1)+O(n)
+
+→ O(n²).
+
+⚠️ In your code, since pivot = arr[low], if input is sorted (ascending or descending), you’ll hit the O(n²) case.
+
+📦 Space Complexity of Quicksort
+
+Extra arrays: None → all swaps are done in-place.
+So O(1) auxiliary space.
+
+Recursion stack: Depends on recursion depth:
+
+Best / Average case: O(log n) (balanced splits).
+
+Worst case: O(n) (unbalanced splits).
+
+✅ Final Complexity:
+
+Best / Average: O(n log n) time, O(log n) space (recursion).
+
+Worst: O(n²) time, O(n) space.
+
+*/
