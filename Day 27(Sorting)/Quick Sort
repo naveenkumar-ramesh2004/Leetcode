@@ -39,6 +39,56 @@ class Quicksort{
         return j;
     }
 }
+/* -- Javascript
+function quicksort(arr, low, high) {
+    if (low < high) {
+        let pivotIdx = partition(arr, low, high);
+        quicksort(arr, low, pivotIdx - 1);
+        quicksort(arr, pivotIdx + 1, high);
+    }
+}
+
+function partition(arr, low, high) {
+    let pivot = arr[low];
+    let i = low, j = high;
+
+    while (i < j) {
+        while (arr[i] <= pivot && i < high) {
+            i++;
+        }
+        while (arr[j] > pivot && j > low) {
+            j--;
+        }
+        if (i < j) {
+            // swap arr[i] and arr[j]
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    // place pivot in correct position
+    [arr[low], arr[j]] = [arr[j], arr[low]];
+
+    return j;
+}
+/*
+// Example usage
+let arr = [5, 6, 7, 2, 1, 3];
+quicksort(arr, 0, arr.length - 1);
+console.log(arr);
+🔑 Key Notes for Java → JavaScript conversion:
+No static types → no int[] or int. Just let or const.
+
+Swapping → Java uses temp variable, JS can use array destructuring:
+
+js
+Copy code
+[arr[i], arr[j]] = [arr[j], arr[i]];
+Print → System.out.println becomes console.log.
+*/
+*/
+
+
+
 
 /*
  while (arr[i] <= pivot && i < high) {
