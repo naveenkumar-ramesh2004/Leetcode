@@ -47,3 +47,91 @@ public class mergesort {
     }
 
 }
+
+/* ---------------javascript-----------------------------
+function mergeSort(arr, low = 0, high = arr.length - 1) {
+  if (low >= high) return;
+
+  let mid = Math.floor((low + high) / 2);
+
+  mergeSort(arr, low, mid);
+  mergeSort(arr, mid + 1, high);
+
+  merge(arr, low, mid, high);
+}
+
+function merge(arr, low, mid, high) {
+  let temp = [];
+  let left = low;
+  let right = mid + 1;
+
+  while (left <= mid && right <= high) {
+    if (arr[left] < arr[right]) {
+      temp.push(arr[left++]);
+    } else {
+      temp.push(arr[right++]);
+    }
+  }
+
+  while (left <= mid) {
+    temp.push(arr[left++]);
+  }
+
+  while (right <= high) {
+    temp.push(arr[right++]);
+  }
+
+  // Copy back to original array
+  for (let i = low; i <= high; i++) {
+    arr[i] = temp[i - low];
+  }
+}
+
+// Example usage:
+let arr = [3, 1, 2, 4, 1, 5, 6, 2, 4];
+mergeSort(arr);
+console.log(arr);  // [1, 1, 2, 2, 3, 4, 4, 5, 6]
+
+*/
+
+/*
+🔹 Time Complexity of Merge Sort
+
+Divide step
+Each recursive call splits the array into two halves.
+Number of levels of recursion = log₂(n).
+
+Merge step
+At each level, you merge all subarrays.
+Merging takes O(n) time (since every element is processed once per level).
+
+Total
+
+Time = O(n) * O(log n) = O(n log n)
+
+
+✅ Best case = O(n log n)
+✅ Average case = O(n log n)
+✅ Worst case = O(n log n)
+
+🔹 Space Complexity
+
+You are using an ArrayList temp for merging.
+
+In the worst case, this temporary array needs to store n elements.
+
+Also, recursion uses stack space = O(log n).
+
+So,
+
+Space = O(n) (for temp) + O(log n) (for recursion stack)
+≈ O(n)
+
+
+📌 Final Answer:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n)
+
+*/
