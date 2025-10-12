@@ -55,3 +55,35 @@ i	nums[i]	sum (current)	max
 ✅ Final answer: 6
 
 */
+
+//Don't confuse that it is a follow up qution
+//Print max sub array
+/*
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int max=Integer.MIN_VALUE;
+        int sum=0;
+        int left=0,right=0;
+        for(int i=0;i<nums.length;i++){
+        //    sum=Math.max(nums[i],sum+nums[i]);
+        if(nums[i]<sum+nums[i]){
+            sum+=nums[i];
+        }
+        else{
+            sum=nums[i];
+            left=i;
+        }
+            // max=Math.max(max,sum);
+            if(max<sum){
+                max=sum;
+                right=i;
+            }
+        }
+        while(left<=right){
+            System.out.print(nums[left++]+" ");
+        }
+        System.out.println();
+        return max;
+    }
+}
+*/
