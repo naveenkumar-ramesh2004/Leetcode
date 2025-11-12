@@ -1,5 +1,6 @@
 ## [Ceil in a Sorted Array](https://www.geeksforgeeks.org/problems/ceil-in-a-sorted-array/1)
 
+
 ```
 // User function Template for Java
 class Solution {
