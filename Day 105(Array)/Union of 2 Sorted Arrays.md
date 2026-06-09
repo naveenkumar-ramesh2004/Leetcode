@@ -1,6 +1,6 @@
 ## [Union of 2 Sorted Arrays](https://www.geeksforgeeks.org/problems/union-of-two-sorted-arrays-1587115621/1)
 
-```
+``` 
 class Solution {
     public static ArrayList<Integer> findUnion(int a[], int b[]) {
         // code here
@@ -16,3 +16,4 @@ class Solution {
         return ans;
     }
 }
+
