@@ -22,13 +22,7 @@ class Solution {
 			return addAtPos;
 		Node temp = head;
 		int count = 0;
-		while (temp!= null) {
-			if (count == p) {
-				addAtPos.next = temp.next;
-				temp.next = addAtPos;
-				addAtPos.prev = temp;
-				return head;
-			}
+		while (temp!= null && count<p) {
 			count++;
 			temp = temp.next;
 		}
