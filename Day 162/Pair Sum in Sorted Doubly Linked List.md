@@ -1,5 +1,4 @@
 ## [Pair Sum in Sorted Doubly Linked List](https://www.geeksforgeeks.org/problems/find-pairs-with-given-sum-in-doubly-linked-list/1)
-
 ```
 /* Structure of Doubly Linked List Node
 class Node {
